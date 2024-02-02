@@ -54,7 +54,7 @@ public class Scrittore implements Runnable{
         }
     }
     
-    public void scriviDati(){
+    public void scriviDati(String nome, String password){
         BufferedWriter br=null;
         
         try {
@@ -62,8 +62,7 @@ public class Scrittore implements Runnable{
             br = new BufferedWriter(
                     new FileWriter(nomeFile));
             //2) scrivo nel buffer
-            br.write("File in output");
-            br.write("\n\r");
+            br.write("<" + nome + ">" + ";" + "<" + password + ">");
             //3) svuoto il buffer e salvo nel file i dati
             br.flush();         
         } catch (IOException ex) {

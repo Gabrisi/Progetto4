@@ -2,10 +2,14 @@ package gestionefile;
 
 /**
  *
- * @author MC
+ * @author Silla Gabriele
  * @version 12/01/23
  */
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+
 public class GestioneFile {
 
     /**
@@ -13,9 +17,15 @@ public class GestioneFile {
      */
     public static void main(String[] args) {
         
+        //dichiarazione vaariabili
+        String password = null;
+        String nome = null;
+        
+        
         //1)LETTURA
         Lettore lettore = new Lettore("user.json");
-        Lettore Leggicose = new Lettore("user.json",nome, password); 
+        nome = lettore.Inserisci();
+        password = lettore.Inserisci();
         lettore.start();
         //2)ELABORAZIONE
         System.out.println("scegliere un username ed una password");
@@ -24,6 +34,7 @@ public class GestioneFile {
         Scrittore scrittore = new Scrittore("output.csv");
         Thread threadScrittore = new Thread(scrittore);
         threadScrittore.start();
+        scrittore.scriviDati(nome, password);
+        
     }
-    
 }
